@@ -14,9 +14,9 @@
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-web": "~0.11.7",
+    "expo-av": "8.4.0",
     "react-native-paper": "3.6.0",
-    "react-native-elements": "2.0.4",
-    "expo-speech": "8.2.1"
+    "react-native-elements": "2.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",

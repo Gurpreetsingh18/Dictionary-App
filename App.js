@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Header } from 'react-native-elements';
 import db from './localdb';
-import * as Speech from 'expo-speech';
 
 
 export default class App extends React.Component {
@@ -17,19 +16,21 @@ export default class App extends React.Component {
     this.state = {
       text: '',
       chunks: [],
+      phonicSounds :[],
     };
   }
   render() {
     return (
       <View style={styles.container}>
         <Header
-          backgroundColor={'#9c8210'}
+          backgroundColor={'#f542d4'}
           centerComponent={{
             text: 'Dictionary App',
             style: { color: '#fff', fontSize: 20 },
           }}
         />
         
+
         <TextInput
           style={styles.inputBox}
           onChangeText={text => {
@@ -41,23 +42,22 @@ export default class App extends React.Component {
           style={styles.goButton}
           onPress={() => {
             this.setState({ chunks : db[this.state.text ].chunks });
+            this.setState({ phonicSounds : db[this.state.text ].phonicSounds });
           }}>
           <Text style={styles.buttonText}>GO</Text>
         </TouchableOpacity>
         <View>
             {this.state.chunks.map(
-              (item)=>{
+              (item,index)=>{
                 return (
-                  <TouchableOpacity style = {styles.chunkButton} onPress={() => {
-          Speech.speak('https://docs.expo.io/versions/latest/sdk/speech/');
-                  }} >
+                  <TouchableOpacity style = {styles.chunkButton} >
                    <Text style={styles.displayText}>{item}</Text>
                    </TouchableOpacity>
                 )  
               }
             )}
           </View>
-        
+
       </View>
     );
   }
@@ -66,7 +66,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03fcca',
+    backgroundColor: '#42f5f5',
   },
   inputBox: {
     marginTop: 50,
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 30,
   },
-
   chunkButton : {
     width : '60%',
     height : 50,
@@ -105,3 +104,4 @@ const styles = StyleSheet.create({
     backgroundColor : 'green'
   }
 });
+
